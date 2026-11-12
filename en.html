@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DeviceControl · Parental device control for Android</title>
+<meta name="description" content="DeviceControl turns any Android phone into a filtered, safe device. Find an ambassador near you.">
+<link rel="alternate" hreflang="he" href="index.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;500;600;700;800&display=swap">
+<style>
+  /* Layout: single-column RTL product ad — hero with live phone mockup, benefit grid,
+     how-it-works, WhatsApp-filter spotlight, pricing, final CTA. Calm, premium, trust-first. */
+  :root{
+    --bg:#f3f1ea;            /* warm paper */
+    --surface:#ffffff;
+    --surface-2:#f7f6f1;
+    --ink:#15211d;           /* near-black, green bias */
+    --muted:#5a6762;
+    --line:#e2ddd1;
+    --primary:#0f6b58;       /* deep teal-green = protection / kosher calm */
+    --primary-ink:#0a4a3d;
+    --primary-soft:#e4efe9;
+    --gold:#b4842f;          /* brass accent, CTA */
+    --gold-soft:#f0e4cb;
+    --shadow:0 18px 50px -24px rgba(15,34,29,.45);
+    --radius:18px;
+    --font-display:"Frank Ruhl Libre",Georgia,"Times New Roman",serif;
+    --font-body:"Assistant","Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0e1513;--surface:#16211d;--surface-2:#131d19;--ink:#eef2ee;--muted:#9fb0a9;
+    --line:#2a3732;--primary:#39b394;--primary-ink:#8fe0cb;--primary-soft:#163029;
+    --gold:#d9ae5e;--gold-soft:#2b2417;--shadow:0 18px 50px -24px rgba(0,0,0,.7);color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0e1513;--surface:#16211d;--surface-2:#131d19;--ink:#eef2ee;--muted:#9fb0a9;
+    --line:#2a3732;--primary:#39b394;--primary-ink:#8fe0cb;--primary-soft:#163029;
+    --gold:#d9ae5e;--gold-soft:#2b2417;--shadow:0 18px 50px -24px rgba(0,0,0,.7);color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1120px;margin:0 auto;
+    padding-left:max(20px,env(safe-area-inset-left,0px));
+    padding-right:max(20px,env(safe-area-inset-right,0px))}
+  h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.12;font-weight:700}
+  p{margin:0}
+  a{color:inherit}
+  .eyebrow{font-size:.82rem;font-weight:700;letter-spacing:.12em;color:var(--primary);
+    text-transform:uppercase}
+
+  /* ---- header ---- */
+  header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+    z-index:21;background:var(--bg)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800}
+  .mark{width:38px;height:38px;border-radius:11px;flex:none;
+    background:linear-gradient(150deg,var(--primary),var(--primary-ink));
+    display:grid;place-items:center;color:#fff;box-shadow:var(--shadow)}
+  .mark svg{width:21px;height:21px}
+  .brand-name{font-family:var(--font-display);font-size:1.12rem;line-height:1.05}
+  .brand-sub{display:block;font-size:1.02rem;color:var(--primary);font-weight:800;letter-spacing:.02em;line-height:1.15}
+  .store-badge{display:inline-flex;align-items:center;gap:14px;margin-top:22px;background:#fff;color:#15211d;border:1px solid #e2ddd1;border-radius:14px;padding:12px 18px;box-shadow:var(--shadow);max-width:100%;text-align:start}
+  .store-badge .gp{flex:none;padding-inline-end:14px;border-inline-end:1px solid #e2ddd1}
+  .store-badge .gp svg{height:30px;width:auto;display:block}
+  .store-badge b{display:block;font-size:1.05rem;font-weight:800}
+  .store-badge small{color:#5a6762;font-size:.88rem;font-weight:600}
+  .final .store-badge{box-shadow:none}
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .badges .store-badge{margin-top:0}
+  .sp-badge .gp svg{height:28px}
+  .wm{display:flex;flex-direction:column;line-height:1}
+  .dc{font-family:var(--font-body);font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+  .dc span{color:var(--primary)}
+  .brand .dc{font-size:1.55rem}
+  .brand .he{font-family:var(--font-display);font-size:.82rem;color:var(--muted);font-weight:700;margin-top:3px}
+  .brand .mark{width:46px;height:46px;border-radius:13px}
+  .hero-wm{display:block;text-align:start;font-size:clamp(2.8rem,6.4vw,4.4rem);line-height:1;margin-top:18px}
+  .hero h1{font-size:clamp(1.9rem,4.2vw,2.8rem)!important;margin-top:12px!important}
+  .c-ic.sp svg{width:26px;height:26px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:var(--font-body);font-weight:700;font-size:1rem;cursor:pointer;
+    border-radius:12px;padding:13px 22px;border:1px solid transparent;text-decoration:none;
+    transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow)}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:var(--shadow)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .nav .btn{padding:10px 18px;font-size:.92rem}
+  @media(max-width:600px){.nav .btn-ghost{display:none}}
+
+  /* ---- hero ---- */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;
+    padding-block:64px 40px}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-soft);
+    color:var(--primary-ink);font-weight:700;font-size:.85rem;padding:7px 14px;border-radius:999px;
+    border:1px solid color-mix(in srgb,var(--primary) 25%,transparent)}
+  .hero h1{font-size:clamp(2.3rem,5.2vw,3.5rem);font-weight:900;margin-top:20px}
+  .hero h1 .hl{color:var(--primary)}
+  .hero-lead{font-size:1.18rem;color:var(--muted);margin-top:18px;max-width:34ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .hero-trust{display:flex;flex-wrap:wrap;gap:18px 24px;margin-top:26px;font-size:.9rem;
+    color:var(--muted);font-weight:600}
+  .hero-trust span{display:inline-flex;align-items:center;gap:7px}
+  .hero-trust svg{width:17px;height:17px;color:var(--primary);flex:none}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;gap:36px;padding-block:40px 24px}
+    .hero-media{order:-1}}
+
+  /* ---- phone mockup ---- */
+  .phone-stage{display:flex;justify-content:center;position:relative}
+  .phone-stage::before{content:"";position:absolute;inset:-6% 8% 4%;border-radius:50%;
+    background:radial-gradient(closest-side,color-mix(in srgb,var(--primary) 30%,transparent),transparent 70%);
+    filter:blur(10px);z-index:0}
+  .phone{position:relative;z-index:1;width:300px;max-width:84vw;background:#0c1512;border-radius:40px;
+    padding:12px;box-shadow:var(--shadow),0 0 0 2px rgba(255,255,255,.04) inset}
+  .screen{background:var(--surface);border-radius:30px;overflow:hidden;
+    border:1px solid var(--line)}
+  .s-top{background:linear-gradient(160deg,var(--primary),var(--primary-ink));color:#fff;
+    padding:26px 20px 20px;text-align:center;position:relative}
+  .s-top .notch{position:absolute;top:10px;right:50%;transform:translateX(50%);width:90px;height:6px;
+    background:rgba(255,255,255,.35);border-radius:99px}
+  .s-top h4{font-family:var(--font-display);font-size:1.3rem;margin:14px 0 2px;font-weight:700}
+  .s-top p{font-size:.82rem;opacity:.85}
+  .s-status{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(255,255,255,.16);
+    padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:700}
+  .s-dot{width:8px;height:8px;border-radius:50%;background:#58e6b0;box-shadow:0 0 0 3px rgba(88,230,176,.25)}
+  .s-body{padding:14px 14px 18px;display:flex;flex-direction:column;gap:9px}
+  .s-label{font-size:.72rem;font-weight:700;color:var(--muted);margin:4px 2px 0}
+  .toggle-row{display:flex;align-items:center;gap:11px;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:13px;padding:11px 12px}
+  .t-ic{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;
+    background:var(--primary-soft);color:var(--primary-ink)}
+  .t-ic svg{width:18px;height:18px}
+  .t-txt{flex:1;min-width:0}
+  .t-txt b{display:block;font-size:.84rem;font-weight:700}
+  .t-txt small{color:var(--muted);font-size:.72rem}
+  .sw{width:40px;height:23px;border-radius:999px;flex:none;position:relative;background:var(--primary)}
+  .sw::after{content:"";position:absolute;top:2.5px;right:2.5px;width:18px;height:18px;border-radius:50%;
+    background:#fff}
+  .sw.off{background:#c7cdc9}.sw.off::after{right:auto;left:2.5px}
+
+  /* ---- generic section ---- */
+  section{padding-block:56px}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 42px}
+  .sec-head h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-top:12px}
+  .sec-head p{color:var(--muted);font-size:1.08rem;margin-top:14px}
+
+  /* trust strip */
+  .strip{background:var(--primary-ink);color:#fff}
+  :root[data-theme="dark"] .strip,
+  :root:not([data-theme="light"]) .strip{background:var(--surface);border-block:1px solid var(--line)}
+  @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .strip{background:var(--primary-ink)}}
+  .strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:34px;text-align:center}
+  .stat b{font-family:var(--font-display);font-size:2rem;display:block;font-weight:900;color:#fff}
+  :root[data-theme="dark"] .stat b,:root:not([data-theme="light"]) .stat b{color:var(--primary-ink)}
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .stat b{color:#fff}}
+  .stat small{font-size:.86rem;opacity:.82;font-weight:600}
+  .strip{--stripfg:#dfeee8}
+  .stat small{color:var(--stripfg)}
+  :root[data-theme="dark"] .stat small,:root:not([data-theme="light"]) .stat small{color:var(--muted)}
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .stat small{color:#dfeee8}}
+  @media(max-width:620px){.strip .wrap{grid-template-columns:repeat(2,1fr);gap:26px 16px}}
+
+  /* benefits grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .c-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;
+    background:var(--primary-soft);color:var(--primary-ink);margin-bottom:16px}
+  .c-ic svg{width:25px;height:25px}
+  .card h3{font-size:1.22rem;font-weight:700}
+  .card p{color:var(--muted);margin-top:9px;font-size:.98rem}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:step}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--radius);padding:28px 24px}
+  .step::before{counter-increment:step;content:counter(step);font-family:var(--font-display);
+    font-weight:900;font-size:1.1rem;width:40px;height:40px;border-radius:50%;background:var(--primary);
+    color:#fff;display:grid;place-items:center;margin-bottom:16px}
+  .step h3{font-size:1.18rem}.step p{color:var(--muted);margin-top:8px}
+
+  /* spotlight (whatsapp) */
+  .spot{background:var(--surface);border:1px solid var(--line);border-radius:26px;
+    padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+    box-shadow:var(--shadow)}
+  @media(max-width:820px){.spot{grid-template-columns:1fr;gap:28px}}
+  .spot h2{font-size:clamp(1.7rem,3.6vw,2.3rem);font-weight:800}
+  .checklist{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:13px}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;font-size:1.02rem}
+  .checklist .ck{width:26px;height:26px;border-radius:8px;flex:none;background:var(--primary-soft);
+    color:var(--primary-ink);display:grid;place-items:center;margin-top:1px}
+  .checklist .ck svg{width:15px;height:15px}
+  .spot-visual{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .block-pill{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;
+    border-radius:12px;background:var(--surface);border:1px solid var(--line);margin-bottom:10px;font-weight:600}
+  .block-pill.blocked{opacity:.95}
+  .tag{font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+  .tag.no{background:#fbe3e0;color:#a63327}
+  .tag.yes{background:var(--primary-soft);color:var(--primary-ink)}
+  :root[data-theme="dark"] .tag.no,:root:not([data-theme="light"]) .tag.no{background:#3a211e;color:#f0a79c}
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .tag.no{background:#fbe3e0;color:#a63327}}
+
+  /* pricing */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:0 auto}
+  @media(max-width:620px){.plans{grid-template-columns:1fr}}
+  .plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px}
+  .plan.feat{border:2px solid var(--primary);position:relative;box-shadow:var(--shadow)}
+  .plan.feat .ribbon{position:absolute;top:-13px;inset-inline-start:24px;background:var(--gold);color:#fff;
+    font-size:.76rem;font-weight:800;padding:5px 14px;border-radius:999px}
+  .plan h3{font-size:1.4rem}
+  .plan.free{border:2px solid var(--primary)}
+  .plan.free .price{font-size:2rem;color:var(--primary)}
+  .hero-free{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--primary);color:#fff;
+    font-weight:800;font-size:1.02rem;padding:8px 16px;border-radius:999px;box-shadow:var(--shadow);text-decoration:none}
+  .hero-free svg{width:18px;height:18px;flex:none}
+  .plan .price{font-family:var(--font-display);font-weight:900;font-size:1.05rem;color:var(--muted);margin:6px 0 2px}
+  .plan ul{list-style:none;padding:0;margin:18px 0;display:flex;flex-direction:column;gap:11px}
+  .plan li{display:flex;gap:10px;font-size:.97rem}
+  .plan li svg{width:19px;height:19px;color:var(--primary);flex:none;margin-top:3px}
+  .plan li.dim{color:var(--muted)}.plan li.dim svg{color:var(--muted)}
+
+  /* final cta */
+  .final{background:linear-gradient(160deg,var(--primary),var(--primary-ink));color:#fff;
+    border-radius:28px;padding:clamp(34px,6vw,64px);text-align:center;box-shadow:var(--shadow)}
+  .final h2{font-size:clamp(1.9rem,4.4vw,2.7rem);font-weight:900;color:#fff}
+  .final p{color:rgba(255,255,255,.88);font-size:1.12rem;margin:16px auto 0;max-width:46ch}
+  .final-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+  .final .btn-ghost{color:#fff;border-color:rgba(255,255,255,.4)}
+  .contact{margin-top:22px;font-size:.95rem;color:rgba(255,255,255,.85)}
+  .contact b{color:#fff}
+
+  footer{text-align:center;padding-block:36px 44px;color:var(--muted);font-size:.86rem}
+  .note{max-width:560px;margin:14px auto 0;font-size:.78rem;opacity:.8}
+
+  /* ---- ambassadors ---- */
+  .amb-tools{display:flex;flex-direction:column;gap:16px;align-items:center;margin-bottom:30px}
+  .amb-search{position:relative;width:100%;max-width:520px}
+  .amb-search input{width:100%;font:inherit;font-size:1.05rem;color:var(--ink);background:var(--surface);
+    border:1px solid var(--line);border-radius:14px;padding:14px 16px;padding-inline-start:48px;box-shadow:var(--shadow);outline:none}
+  .amb-search input:focus{border-color:var(--primary)}
+  .amb-search svg{position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .chip{font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;border-radius:999px;padding:8px 15px;
+    background:var(--surface);color:var(--ink);border:1px solid var(--line);transition:background .15s,color .15s}
+  .chip:hover{border-color:var(--primary)}
+  .chip small{font-weight:700;color:var(--muted);margin-inline-start:4px}
+  .chip[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+  .chip[aria-pressed="true"] small{color:rgba(255,255,255,.8)}
+  .region-block{margin-top:34px}
+  .region-block:first-child{margin-top:0}
+  .region-title{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:1.45rem;font-weight:700;margin-bottom:16px}
+  .region-title .pin{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary-ink);flex:none}
+  .region-title .pin svg{width:18px;height:18px}
+  .region-title small{font-family:var(--font-body);font-size:.9rem;color:var(--muted);font-weight:600}
+  .region-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .amb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.amb-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:580px){.amb-grid{grid-template-columns:1fr}}
+  .amb{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+    display:flex;flex-direction:column;gap:16px;transition:transform .18s ease,box-shadow .18s ease}
+  .amb:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .amb-top{display:flex;align-items:center;gap:13px}
+  .avatar{width:50px;height:50px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;font-size:1.15rem;
+    color:#fff;background:linear-gradient(150deg,var(--primary),var(--primary-ink))}
+  .amb-top b{display:block;font-size:1.12rem;line-height:1.25}
+  .amb-loc{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:.92rem;font-weight:600}
+  .amb-loc svg{width:15px;height:15px;color:var(--primary);flex:none}
+  .amb-note{font-size:.88rem;color:var(--muted);background:var(--surface-2);border-radius:10px;padding:8px 11px}
+  .amb-phone{font-weight:800;font-size:1.05rem;letter-spacing:.02em}
+  .amb-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+  .amb-actions .btn{padding:11px 10px;font-size:.93rem}
+  .btn-wa{background:#1fa855;color:#fff}
+  .amb-empty{text-align:center;color:var(--muted);padding:40px 16px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius)}
+  .pro{display:inline-block;font-family:var(--font-body);font-size:.72rem;font-weight:800;letter-spacing:.02em;
+    background:var(--gold-soft);color:var(--gold);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+  .card .pro{position:absolute;top:18px;inset-inline-end:18px;margin:0}
+  .card{position:relative}
+  .plan-note{font-size:.86rem;color:var(--muted);margin-top:-6px;margin-bottom:14px}
+  .lang{font-weight:800;font-size:.9rem;text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:10px}
+  .lang:hover{color:var(--primary)}
+  [dir="ltr"] .hero-cta .btn svg{transform:scaleX(-1)}
+  /* English app home-screen mockup (text from the app's res/values/strings.xml) */
+  .app{background:#f1f3f6;color:#1d2433;padding:22px 14px 16px;font-family:var(--font-body);text-align:center}
+  .app h4{margin:0;font-size:1.55rem;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+  .app .sub{color:#6b7280;font-size:.8rem;margin-top:2px}
+  .app-status{display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:14px;margin-top:16px;box-shadow:0 6px 16px -10px rgba(0,0,0,.35);text-align:start}
+  .app-power{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;background:#e9f6ef;border:1px solid #cfe3d8;color:#2f9e5d}
+  .app-power svg{width:24px;height:24px}
+  .app-status b{display:block;font-size:.92rem}
+  .app-status small{color:#2f9e5d;font-size:.78rem;font-weight:600}
+  .app-label{font-size:.74rem;font-weight:700;margin:16px 4px 6px;text-align:start}
+  .app-note{background:#eef6fc;border:1px solid #c9dbe9;border-radius:12px;padding:8px 10px;font-size:.68rem;color:#3b5b78;text-align:start;line-height:1.35}
+  .app-list{background:#fff;border-radius:22px;margin-top:12px;padding:4px 14px;text-align:start}
+  .app-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #eceef2}
+  .app-row:last-child{border-bottom:0}
+  .app-row div{flex:1;min-width:0}
+  .app-row b{display:block;font-size:.82rem;line-height:1.3}
+  .app-row small{display:block;color:#6b7280;font-size:.66rem;line-height:1.3}
+  .app-sw{width:40px;height:22px;border-radius:999px;background:#6b55a6;position:relative;flex:none}
+  .app-sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+  .final .btn-light{background:#fff;color:var(--primary-ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </span>
+      <span class="wm"><bdi dir="ltr" class="dc">Device<span>Control</span></bdi><span class="he">Device control</span></span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="index.html" class="lang" lang="he" hreflang="he">עברית</a>
+      <a href="#pricing" class="btn btn-ghost">Pricing</a>
+      <a href="#ambassadors" class="btn btn-primary">Find an ambassador</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-text">
+        <span class="hero-badge" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Your device, fully under your control
+        </span>
+        <span class="dc hero-wm" dir="ltr">Device<span>Control</span></span>
+        <h1>Turn any Android phone<br><span class="hl">into a filtered, safe device</span></h1>
+        <p class="hero-lead">One app that controls the whole device: app filtering, WhatsApp filtering, sleep & screen time, and in-app browser blocking. It runs as the device owner and is locked with a password.</p>
+        <a href="#pricing" class="hero-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> There’s a free version, so you can start without paying</a>
+        <div class="hero-cta">
+          <a href="#ambassadors" class="btn btn-gold">Get started
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+          </a>
+          <a href="#pricing" class="btn btn-ghost">Try it free</a>
+        </div>
+        <div class="hero-trust">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Can’t be uninstalled</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Set up in person by an ambassador</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Free version available</span>
+        </div>
+        <div class="badges"><div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>App store: <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>Stays on the device, no replacement store</small></span></div><div class="store-badge sp-badge"><span class="gp"><svg aria-label="Spotify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+  <path fill="#1ed760" d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8Z"/>
+  <path d="M406.6 231.1c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z"/>
+</svg></span><span><b><bdi dir="ltr">Spotify</bdi> without images</b><small>Just the music, no images or ads · full license</small></span></div></div>
+      </div>
+
+      <div class="hero-media">
+        <div class="phone-stage">
+          <div class="phone" role="img" aria-label="The DeviceControl app screen">
+            <div class="screen"><div class="app"><h4>Device Control</h4><div class="sub">Security and management center</div><div class="app-status"><span class="app-power"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg></span><div><b>System status</b><small>Device owner active</small></div></div><div class="app-label">Enable filtering</div><div class="app-note">Note: Filtering stays off until you turn the switches on.</div><div class="app-list"><div class="app-row"><div><b>App filtering</b><small>Block access to disallowed apps</small></div><span class="app-sw"></span></div><div class="app-row"><div><b>Sleep &amp; screen time</b><small>Enable sleep and screen time</small></div><span class="app-sw"></span></div><div class="app-row"><div><b>Network traffic filtering</b><small>Block ads and strip images in Spotify</small></div><span class="app-sw"></span></div><div class="app-row"><div><b>Block in-app browser</b><small>Block web pages opened inside apps</small></div><span class="app-sw"></span></div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <div class="stat"><b>1</b><small>app controls the whole device</small></div>
+      <div class="stat"><b>24/7</b><small>protection running in the background</small></div>
+      <div class="stat"><b>🔒</b><small>only the password holder can change settings</small></div>
+      <div class="stat"><b>Free</b><small>basic version · ₪120/year for the full license</small></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="wrap">
+    <section id="features">
+      <div class="sec-head">
+        <span class="eyebrow">All in one place</span>
+        <h2>Full control, no compromises</h2>
+        <p>DeviceControl runs as the device owner, so it filters, blocks and protects at the system level, not just on top of apps.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+          <h3>App filtering</h3>
+          <p>Only approved apps run. Browsers and YouTube are blocked, and any new app that isn’t approved is blocked as soon as it’s installed.</p>
+        </article>
+        <article class="card">
+          <span class="pro">Full license</span>
+          <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
+          <h3>WhatsApp Filter</h3>
+          <p>Block channels, status, video and the updates tab. Keep the chats, lose what you don’t need.</p>
+        </article>
+        <article class="card">
+          <span class="pro">Full license</span>
+          <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <h3>Sleep & screen time</h3>
+          <p>Set sleep schedules when the device locks (WhatsApp can stay unblocked if you choose) and screen-time limits for each day of the week.</p>
+        </article>
+        <article class="card sp-card">
+          <span class="pro">Full license</span>
+          <span class="c-ic sp"><svg aria-label="Spotify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+  <path fill="#1ed760" d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8Z"/>
+  <path d="M406.6 231.1c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z"/>
+</svg></span>
+          <h3><bdi dir="ltr">Spotify</bdi> without images</h3>
+          <p>Network traffic filtering blocks ads and strips images in Spotify, leaving just the music. Spotify is included in the full license app list.</p>
+        </article>
+        <article class="card">
+          <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+          <h3>Block in-app browser</h3>
+          <p>Blocks web pages opened inside apps, closing the back door to browsing. With the full license you can choose apps where browsing is allowed.</p>
+        </article>
+        <article class="card">
+          <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+          <h3>Uninstall protection + password</h3>
+          <p>Settings are locked with a password, and the app can’t be removed without it. Forgot password? Send the recovery code to support and get an unlock code back.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="wrap">
+    <section>
+      <div class="sec-head">
+        <span class="eyebrow">Easy to set up</span>
+        <h2>Three steps to full protection</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>An ambassador installs it</h3>
+          <p>The app is set as the device owner, which needs special preparation of the phone. Your local ambassador does it for you.</p>
+        </div>
+        <div class="step">
+          <h3>Choose what’s allowed</h3>
+          <p>Manage the app list, turn on WhatsApp filtering and set sleep schedules and screen time.</p>
+        </div>
+        <div class="step">
+          <h3>Lock it with a password</h3>
+          <p>Set a personal password. From then on, settings are locked and protection keeps running in the background.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- WHATSAPP SPOTLIGHT -->
+  <div class="wrap">
+    <section>
+      <div class="spot">
+        <div>
+          <span class="eyebrow">With the full license</span>
+          <h2>A WhatsApp filter that actually works</h2>
+          <p style="color:var(--muted);margin-top:14px;font-size:1.05rem">No need for a separate “kosher” version. Filter regular WhatsApp, exactly the way you want:</p>
+          <ul class="checklist">
+            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block channels</li>
+            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block status and hide the updates tab</li>
+            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block video in the media viewer</li>
+            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Chats and calls keep working as usual</li>
+          </ul>
+        </div>
+        <div class="spot-visual" aria-hidden="true">
+          <div class="block-pill blocked"><span>Channels</span><span class="tag no">Blocked</span></div>
+          <div class="block-pill blocked"><span>Status</span><span class="tag no">Blocked</span></div>
+          <div class="block-pill blocked"><span>Updates tab</span><span class="tag no">Blocked</span></div>
+          <div class="block-pill blocked"><span>Video</span><span class="tag no">Blocked</span></div>
+          <div class="block-pill"><span>Chats & calls</span><span class="tag yes">Active</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PRICING -->
+  <div class="wrap">
+    <section id="pricing">
+      <div class="sec-head">
+        <span class="eyebrow">Simple pricing</span>
+        <h2>Choose the version that fits you</h2>
+        <p>A free version with basic protection, or a yearly license that unlocks every feature.</p>
+      </div>
+      <div class="plans">
+        <div class="plan free">
+          <h3>Free version</h3>
+          <div class="price">Free</div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A fixed list of essential apps: navigation, public transport, banks, health funds, Gmail and WhatsApp</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Allow or block system apps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Blocks browsers, YouTube and installing unapproved apps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Network traffic filtering and ad blocking</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Block in-app browser</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Password lock, uninstall protection and password recovery</li>
+            <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Allow any app you want</li>
+            <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> WhatsApp filtering</li>
+            <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Sleep & screen time</li>
+            <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Manage system settings</li>
+          </ul>
+          <a href="#ambassadors" class="btn btn-ghost" style="width:100%">Use the free version</a>
+        </div>
+        <div class="plan feat">
+          <span class="ribbon">Recommended</span>
+          <h3>Full license</h3>
+          <div class="price">₪120 / year</div>
+          <p class="plan-note">One license per device</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in the free version, plus:</b></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> An expanded list of ~200 approved apps, including Spotify, Bit, PayBox, Moovit, Gett, Zoom, Office and Torah &amp; learning apps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Allow or block any additional app</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp filtering: channels, status, updates tab and video</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sleep schedules and screen time by day</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Manage system settings: VPN, Wi-Fi settings, Bluetooth, internet tethering, accounts and more</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Choose apps where in-app browsing is allowed</li>
+          </ul>
+          <a href="#ambassadors" class="btn btn-gold" style="width:100%">Buy a license</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- AMBASSADORS (data comes from ambassadors.js) -->
+  <div class="wrap">
+    <section id="ambassadors">
+      <div class="sec-head">
+        <div class="eyebrow">Our ambassadors</div>
+        <h2>Find an ambassador near you</h2>
+        <p>Our ambassadors install, set up and sell licenses in person, close to home.</p>
+      </div>
+      <div class="amb-tools">
+        <label class="amb-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="amb-q" type="search" placeholder="Search by city or name…" aria-label="Search ambassadors by city or name">
+        </label>
+        <div class="chips" id="amb-chips" role="group" aria-label="Filter by region"></div>
+      </div>
+      <div id="amb-list"></div>
+    </section>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="wrap">
+    <section id="cta">
+      <div class="final">
+        <h2><bdi dir="ltr">DeviceControl</bdi>: your device, under your control</h2>
+        <p>Join the families keeping their homes filtered and safe, with protection that simply works in the background.</p>
+        <div class="final-cta">
+          <a href="#ambassadors" class="btn btn-light">📍 Find an ambassador near you</a>
+        </div>
+        <div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>App store: <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>Stays on the device, no replacement store</small></span></div>
+        <p class="contact">For purchase and support, contact your nearest ambassador</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="brand" style="justify-content:center;margin-bottom:10px">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <span class="wm"><bdi dir="ltr" class="dc">Device<span>Control</span></bdi><span class="he">Device control</span></span>
+      </div>
+      <p>Full control. Real protection. No compromises.</p>
+    </div>
+  </footer>
+</main>
+
+<script src="ambassadors.js"></script>
+<script src="assets/ambassadors-ui.js"></script>
+</body>
+</html>
