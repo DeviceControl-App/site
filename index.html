@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>DeviceControl · בקרת מכשיר</title>
-<meta name="description" content="DeviceControl – הפכו כל טלפון אנדרואיד למכשיר מסונן ובטוח. מצאו שגריר באזור שלכם.">
+<meta name="description" content="DeviceControl – הפכו כל טלפון אנדרואיד למכשיר מסונן ובטוח. התקנה עצמאית בחינם או אצל שגריר באזור שלכם.">
 <link rel="alternate" hreflang="en" href="en.html">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;500;600;700;800&display=swap">
 <style>
@@ -289,6 +289,27 @@
   .lang:hover{color:var(--primary)}
   [dir="ltr"] .hero-cta .btn svg{transform:scaleX(-1)}
   .final .btn-light{background:#fff;color:var(--primary-ink)}
+  /* ---- install options ---- */
+  .install-opts{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
+  @media(max-width:680px){.install-opts{grid-template-columns:1fr}}
+  .inst{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+    display:flex;flex-direction:column;position:relative}
+  .inst.feat{border:2px solid var(--primary);box-shadow:var(--shadow)}
+  .inst .ribbon{position:absolute;top:-13px;inset-inline-start:24px;background:var(--gold);color:#fff;
+    font-size:.76rem;font-weight:800;padding:5px 14px;border-radius:999px}
+  .inst-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;
+    background:var(--primary-soft);color:var(--primary-ink);margin-bottom:14px}
+  .inst-ic svg{width:25px;height:25px}
+  .inst h3{font-size:1.4rem}
+  .inst .price{font-family:var(--font-display);font-weight:900;font-size:1.6rem;color:var(--primary);margin:6px 0 2px}
+  .inst .plan-note{margin:0}
+  .inst h4{font-size:.86rem;font-weight:800;color:var(--muted);margin:18px 0 0}
+  .inst ul{list-style:none;padding:0;margin:10px 0 18px;display:flex;flex-direction:column;gap:10px}
+  .inst li{display:flex;gap:10px;font-size:.97rem}
+  .inst li svg{width:19px;height:19px;color:var(--primary);flex:none;margin-top:3px}
+  .inst .btn{width:100%;margin-top:auto}
+  .inst-foot{font-size:.86rem;color:var(--muted);margin-top:12px;text-align:center}
+  .inst-foot a{color:var(--primary);font-weight:700}
 </style>
 </head>
 <body>
@@ -304,7 +325,7 @@
     <div style="display:flex;gap:10px;align-items:center">
       <a href="en.html" class="lang" lang="en" hreflang="en">EN</a>
       <a href="#pricing" class="btn btn-ghost">מחירים</a>
-      <a href="#ambassadors" class="btn btn-primary">מצאו שגריר</a>
+      <a href="#install" class="btn btn-primary">התקנה</a>
     </div>
   </div>
 </header>
@@ -320,17 +341,17 @@
         </span>
         <span class="dc hero-wm" dir="ltr">Device<span>Control</span></span>
         <h1>הפכו כל טלפון אנדרואיד<br><span class="hl">למכשיר מסונן ובטוח</span></h1>
-        <p class="hero-lead">אפליקציה אחת ששולטת בכל המכשיר: סינון אפליקציות, מסנן וואטסאפ, זמני שינה ומסך וחסימת גלישה — מוגדרת כמנהל המכשיר ונעולה בסיסמה.</p>
+        <p class="hero-lead">אפליקציה אחת ששולטת בכל המכשיר: סינון אפליקציות, מסנן וואטסאפ, זמני שינה ומסך וחסימת גלישה.</p>
         <a href="#pricing" class="hero-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> יש גרסה חינמית — התחילו בלי לשלם</a>
         <div class="hero-cta">
-          <a href="#ambassadors" class="btn btn-gold">התחילו עכשיו
+          <a href="#install" class="btn btn-gold">התחילו עכשיו
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
           </a>
           <a href="#pricing" class="btn btn-ghost">נסו בחינם</a>
         </div>
         <div class="hero-trust">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> מוגנת מהסרה</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> התקנה אישית דרך שגריר</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> התקנה עצמאית או דרך שגריר</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> גרסה חינמית זמינה</span>
         </div>
         <div class="badges"><div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>חנות אפליקציות <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>נשארת במכשיר — בלי חנות חלופית</small></span></div><div class="store-badge sp-badge"><span class="gp"><svg aria-label="Spotify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -383,7 +404,7 @@
           <span class="pro">רישיון מלא</span>
           <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
           <h3>זמני שינה וזמן מסך</h3>
-          <p>קובעים שעות שבהן המכשיר ננעל (אפשר להשאיר את הוואטסאפ פתוח) ומגבלת זמן מסך לפי ימים בשבוע.</p>
+          <p>קובעים שעות שבהן המכשיר ננעל (אפשר להשאיר את הוואטסאפ פתוח) ומגבלת זמן מסך לפי ימים בשבוע. שיחות, הודעות ושעון מעורר ממשיכים לעבוד.</p>
         </article>
         <article class="card sp-card">
           <span class="pro">רישיון מלא</span>
@@ -417,8 +438,8 @@
       </div>
       <div class="steps">
         <div class="step">
-          <h3>שגריר מתקין</h3>
-          <p>האפליקציה מוגדרת כמנהל המכשיר, וזה דורש הכנה מיוחדת של הטלפון — השגריר באזור שלכם עושה את זה בשבילכם.</p>
+          <h3>מתקינים — לבד או עם שגריר</h3>
+          <p>האפליקציה מוגדרת כמנהל המכשיר. מתקינים לבד — מהמחשב או מטלפון נוסף — עם אשף ההתקנה החינמי, או שהשגריר באזור שלכם עושה את זה בשבילכם.</p>
         </div>
         <div class="step">
           <h3>בוחרים מה מותר</h3>
@@ -427,32 +448,6 @@
         <div class="step">
           <h3>נועלים בסיסמה</h3>
           <p>מגדירים סיסמה אישית. מרגע זה ההגדרות נעולות וההגנה פועלת ברקע באופן קבוע.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- WHATSAPP SPOTLIGHT -->
-  <div class="wrap">
-    <section>
-      <div class="spot">
-        <div>
-          <span class="eyebrow">ברישיון המלא</span>
-          <h2>מסנן וואטסאפ שבאמת עובד</h2>
-          <p style="color:var(--muted);margin-top:14px;font-size:1.05rem">במקום להתקין גרסה "כשרה" נפרדת — מסננים את הוואטסאפ הרגיל, בדיוק מה שצריך:</p>
-          <ul class="checklist">
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> חסימת ערוצים (Channels)</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> חסימת סטטוס ולשונית העדכונים</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> חסימת צפייה בסרטונים</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> צ'אטים ושיחות ממשיכים לעבוד כרגיל</li>
-          </ul>
-        </div>
-        <div class="spot-visual" aria-hidden="true">
-          <div class="block-pill blocked"><span>ערוצים</span><span class="tag no">נחסם</span></div>
-          <div class="block-pill blocked"><span>סטטוס</span><span class="tag no">נחסם</span></div>
-          <div class="block-pill blocked"><span>לשונית עדכונים</span><span class="tag no">נחסם</span></div>
-          <div class="block-pill blocked"><span>וידאו</span><span class="tag no">נחסם</span></div>
-          <div class="block-pill"><span>צ'אטים ושיחות</span><span class="tag yes">פעיל</span></div>
         </div>
       </div>
     </section>
@@ -477,30 +472,75 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> סינון תעבורת רשת וחסימת פרסומות</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> חסימת דפדפן פנימי באפליקציות</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> נעילה בסיסמה, הגנה מהסרה ושחזור סיסמה</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> הגנות מובנות: חסימת איפוס להגדרות יצרן, מצב בטוח, VPN, הוספת משתמשים ושינוי תאריך ושעה</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> עדכונים אוטומטיים ברקע</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> בחירה חופשית של אפליקציות</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> מסנן וואטסאפ</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> זמני שינה וזמן מסך</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> ניהול הגדרות מערכת</li>
           </ul>
-          <a href="#ambassadors" class="btn btn-ghost" style="width:100%">להתקנה חינמית</a>
+          <a href="#install" class="btn btn-ghost" style="width:100%">להתקנה חינמית</a>
         </div>
         <div class="plan feat">
           <span class="ribbon">מומלץ</span>
           <h3>רישיון מלא</h3>
           <div class="price">₪120 לשנה</div>
-          <p class="plan-note">רישיון אחד למכשיר אחד</p>
+          <p class="plan-note">רישיון אחד למכשיר אחד · לא חידשתם? המכשיר עובר לגרסה החינמית וההגנה ממשיכה</p>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>כל מה שבגרסה החינמית, ובנוסף:</b></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> רשימה מורחבת של כ-200 אפליקציות מאושרות — כולל Spotify, ביט, פייבוקס, מוביט, Gett, Zoom, Office ואפליקציות תורה ולימוד</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> אפשר לאשר או לחסום כל אפליקציה נוספת</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> מסנן וואטסאפ: ערוצים, סטטוס, לשונית העדכונים וסרטונים</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> זמני שינה וזמן מסך לפי ימים</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ניהול הגדרות מערכת: חסימת VPN, שינוי Wi-Fi, Bluetooth, שיתוף אינטרנט, חשבונות ועוד</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> זמני שינה וזמן מסך לפי ימים — שיחות, SMS ושעון מעורר ממשיכים לעבוד</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ניהול הגדרות מערכת: Wi-Fi, Bluetooth, שיתוף אינטרנט, חשבונות, מיקום, העברת קבצים ב-USB, שיחות יוצאות ו-SMS ועוד</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> החרגת אפליקציות מחסימת הדפדפן הפנימי</li>
           </ul>
-          <a href="#ambassadors" class="btn btn-gold" style="width:100%">לרכישת רישיון</a>
+          <a href="#install" class="btn btn-gold" style="width:100%">לרכישת רישיון</a>
         </div>
       </div>
+    </section>
+  </div>
+
+  <!-- INSTALL OPTIONS -->
+  <div class="wrap">
+    <section id="install">
+      <div class="sec-head">
+        <span class="eyebrow">איך מתקינים?</span>
+        <h2>שתי דרכים להתקין</h2>
+        <p>מתקינים לבד מהמחשב או מטלפון נוסף עם אשף ההתקנה — בחינם, או שהשגריר באזור שלכם עושה הכל בשבילכם.</p>
+      </div>
+      <div class="install-opts">
+        <div class="inst">
+          <span class="inst-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <h3>התקנה עצמאית</h3>
+          <div class="price">חינם</div>
+          <p class="plan-note">אשף התקנה בדפדפן שמוריד את הגרסה העדכנית ומנחה צעד אחרי צעד</p>
+          <h4>מה צריך:</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>מחשב או טלפון נוסף עם דפדפן <bdi dir="ltr">Chrome</bdi></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>כבל USB שמחבר בין שני המכשירים</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>הפעלת "אפשרויות מפתחים" ו"ניפוי באגים ב-USB" בטלפון</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>הסרה זמנית של כל החשבונות מהמכשיר (Google, Samsung וכו׳) — מחזירים אותם אחרי ההתקנה</span></li>
+          </ul>
+          <a href="https://devicecontrol.dctech.co.il/installer/" class="btn btn-primary" target="_blank" rel="noopener">💻 לאשף ההתקנה</a>
+        </div>
+        <div class="inst feat">
+          <span class="ribbon">בלי להתעסק</span>
+          <span class="inst-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+          <h3>התקנה אצל שגריר</h3>
+          <div class="price">₪40 <small style="font-size:1rem">חד-פעמי</small></div>
+          <p class="plan-note">תשלום על ההתקנה בלבד · הרישיון המלא בנפרד</p>
+          <h4>מה מקבלים:</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>השגריר מכין את הטלפון ומתקין את האפליקציה</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>מגדיר איתכם אפליקציות, מסנן וואטסאפ וזמני מסך</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>בלי מחשב ובלי הגדרות טכניות</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>אפשר לרכוש אצלו גם רישיון מלא</span></li>
+          </ul>
+          <a href="#ambassadors" class="btn btn-gold">📍 מצאו שגריר באזורכם</a>
+        </div>
+      </div>
+      <p class="inst-foot">התקנתם לבד ורוצים רישיון מלא? <a href="https://wa.me/972525149443" target="_blank" rel="noopener">כתבו לנו בוואטסאפ</a></p>
     </section>
   </div>
 
@@ -531,9 +571,10 @@
         <p>הצטרפו למשפחות ששומרות על בית מסונן ובטוח, עם הגנה שפשוט עובדת ברקע.</p>
         <div class="final-cta">
           <a href="#ambassadors" class="btn btn-light">📍 מצאו שגריר באזורכם</a>
+          <a href="https://devicecontrol.dctech.co.il/installer/" class="btn btn-ghost" target="_blank" rel="noopener">💻 התקנה עצמאית</a>
         </div>
         <div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>חנות אפליקציות <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>נשארת במכשיר — בלי חנות חלופית</small></span></div>
-        <p class="contact">לרכישה ולתמיכה — פנו לשגריר הקרוב אליכם</p>
+        <p class="contact">לרכישה ולתמיכה — פנו לשגריר הקרוב אליכם או <a href="https://wa.me/972525149443" target="_blank" rel="noopener"><b>בוואטסאפ <bdi dir="ltr">052-514-9443</bdi></b></a></p>
       </div>
     </section>
   </div>

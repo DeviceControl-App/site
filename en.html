@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>DeviceControl · Parental device control for Android</title>
-<meta name="description" content="DeviceControl turns any Android phone into a filtered, safe device. Find an ambassador near you.">
+<meta name="description" content="DeviceControl turns any Android phone into a filtered, safe device. Install it yourself for free or with an ambassador near you.">
 <link rel="alternate" hreflang="he" href="index.html">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;500;600;700;800&display=swap">
 <style>
@@ -308,6 +308,27 @@
   .app-sw{width:40px;height:22px;border-radius:999px;background:#6b55a6;position:relative;flex:none}
   .app-sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff}
   .final .btn-light{background:#fff;color:var(--primary-ink)}
+  /* ---- install options ---- */
+  .install-opts{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
+  @media(max-width:680px){.install-opts{grid-template-columns:1fr}}
+  .inst{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+    display:flex;flex-direction:column;position:relative}
+  .inst.feat{border:2px solid var(--primary);box-shadow:var(--shadow)}
+  .inst .ribbon{position:absolute;top:-13px;inset-inline-start:24px;background:var(--gold);color:#fff;
+    font-size:.76rem;font-weight:800;padding:5px 14px;border-radius:999px}
+  .inst-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;
+    background:var(--primary-soft);color:var(--primary-ink);margin-bottom:14px}
+  .inst-ic svg{width:25px;height:25px}
+  .inst h3{font-size:1.4rem}
+  .inst .price{font-family:var(--font-display);font-weight:900;font-size:1.6rem;color:var(--primary);margin:6px 0 2px}
+  .inst .plan-note{margin:0}
+  .inst h4{font-size:.86rem;font-weight:800;color:var(--muted);margin:18px 0 0}
+  .inst ul{list-style:none;padding:0;margin:10px 0 18px;display:flex;flex-direction:column;gap:10px}
+  .inst li{display:flex;gap:10px;font-size:.97rem}
+  .inst li svg{width:19px;height:19px;color:var(--primary);flex:none;margin-top:3px}
+  .inst .btn{width:100%;margin-top:auto}
+  .inst-foot{font-size:.86rem;color:var(--muted);margin-top:12px;text-align:center}
+  .inst-foot a{color:var(--primary);font-weight:700}
 </style>
 </head>
 <body>
@@ -323,7 +344,7 @@
     <div style="display:flex;gap:10px;align-items:center">
       <a href="index.html" class="lang" lang="he" hreflang="he">עברית</a>
       <a href="#pricing" class="btn btn-ghost">Pricing</a>
-      <a href="#ambassadors" class="btn btn-primary">Find an ambassador</a>
+      <a href="#install" class="btn btn-primary">Install</a>
     </div>
   </div>
 </header>
@@ -339,17 +360,17 @@
         </span>
         <span class="dc hero-wm" dir="ltr">Device<span>Control</span></span>
         <h1>Turn any Android phone<br><span class="hl">into a filtered, safe device</span></h1>
-        <p class="hero-lead">One app that controls the whole device: app filtering, WhatsApp filtering, sleep & screen time, and in-app browser blocking. It runs as the device owner and is locked with a password.</p>
+        <p class="hero-lead">One app that controls the whole device: app filtering, WhatsApp filtering, sleep & screen time, and in-app browser blocking.</p>
         <a href="#pricing" class="hero-free"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> There’s a free version, so you can start without paying</a>
         <div class="hero-cta">
-          <a href="#ambassadors" class="btn btn-gold">Get started
+          <a href="#install" class="btn btn-gold">Get started
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
           </a>
           <a href="#pricing" class="btn btn-ghost">Try it free</a>
         </div>
         <div class="hero-trust">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Can’t be uninstalled</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Set up in person by an ambassador</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Install yourself or with an ambassador</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Free version available</span>
         </div>
         <div class="badges"><div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>App store: <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>Stays on the device, no replacement store</small></span></div><div class="store-badge sp-badge"><span class="gp"><svg aria-label="Spotify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
@@ -436,8 +457,8 @@
       </div>
       <div class="steps">
         <div class="step">
-          <h3>An ambassador installs it</h3>
-          <p>The app is set as the device owner, which needs special preparation of the phone. Your local ambassador does it for you.</p>
+          <h3>Install it, yourself or with an ambassador</h3>
+          <p>The app is set as the device owner. Install it yourself from a computer or a second phone with the free setup wizard, or let your local ambassador do it for you.</p>
         </div>
         <div class="step">
           <h3>Choose what’s allowed</h3>
@@ -446,32 +467,6 @@
         <div class="step">
           <h3>Lock it with a password</h3>
           <p>Set a personal password. From then on, settings are locked and protection keeps running in the background.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- WHATSAPP SPOTLIGHT -->
-  <div class="wrap">
-    <section>
-      <div class="spot">
-        <div>
-          <span class="eyebrow">With the full license</span>
-          <h2>A WhatsApp filter that actually works</h2>
-          <p style="color:var(--muted);margin-top:14px;font-size:1.05rem">No need for a separate “kosher” version. Filter regular WhatsApp, exactly the way you want:</p>
-          <ul class="checklist">
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block channels</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block status and hide the updates tab</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Block video in the media viewer</li>
-            <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Chats and calls keep working as usual</li>
-          </ul>
-        </div>
-        <div class="spot-visual" aria-hidden="true">
-          <div class="block-pill blocked"><span>Channels</span><span class="tag no">Blocked</span></div>
-          <div class="block-pill blocked"><span>Status</span><span class="tag no">Blocked</span></div>
-          <div class="block-pill blocked"><span>Updates tab</span><span class="tag no">Blocked</span></div>
-          <div class="block-pill blocked"><span>Video</span><span class="tag no">Blocked</span></div>
-          <div class="block-pill"><span>Chats & calls</span><span class="tag yes">Active</span></div>
         </div>
       </div>
     </section>
@@ -496,30 +491,75 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Network traffic filtering and ad blocking</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Block in-app browser</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Password lock, uninstall protection and password recovery</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Built-in protection: blocks factory reset, safe mode, VPN, adding users and changing date & time</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automatic background updates</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Allow any app you want</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> WhatsApp filtering</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Sleep & screen time</li>
             <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Manage system settings</li>
           </ul>
-          <a href="#ambassadors" class="btn btn-ghost" style="width:100%">Use the free version</a>
+          <a href="#install" class="btn btn-ghost" style="width:100%">Use the free version</a>
         </div>
         <div class="plan feat">
           <span class="ribbon">Recommended</span>
           <h3>Full license</h3>
           <div class="price">₪120 / year</div>
-          <p class="plan-note">One license per device</p>
+          <p class="plan-note">One license per device · If it isn’t renewed, the device moves to the free version and stays protected</p>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in the free version, plus:</b></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> An expanded list of ~200 approved apps, including Spotify, Bit, PayBox, Moovit, Gett, Zoom, Office and Torah &amp; learning apps</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Allow or block any additional app</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp filtering: channels, status, updates tab and video</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sleep schedules and screen time by day</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Manage system settings: VPN, Wi-Fi settings, Bluetooth, internet tethering, accounts and more</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sleep schedules and screen time by day; calls, SMS and alarms keep working</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Manage system settings: Wi-Fi, Bluetooth, internet tethering, accounts, location, USB file transfer, outgoing calls & SMS and more</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Choose apps where in-app browsing is allowed</li>
           </ul>
-          <a href="#ambassadors" class="btn btn-gold" style="width:100%">Buy a license</a>
+          <a href="#install" class="btn btn-gold" style="width:100%">Buy a license</a>
         </div>
       </div>
+    </section>
+  </div>
+
+  <!-- INSTALL OPTIONS -->
+  <div class="wrap">
+    <section id="install">
+      <div class="sec-head">
+        <span class="eyebrow">How to install</span>
+        <h2>Two ways to install</h2>
+        <p>Install it yourself from a computer or a second phone with the free setup wizard, or let your local ambassador do it all for you.</p>
+      </div>
+      <div class="install-opts">
+        <div class="inst">
+          <span class="inst-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <h3>Install it yourself</h3>
+          <div class="price">Free</div>
+          <p class="plan-note">A browser-based wizard that downloads the latest version and guides you step by step</p>
+          <h4>What you need:</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A computer or a second phone with Chrome</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>A USB cable to connect the two devices</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>“Developer options” and “USB debugging” turned on in the phone</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Temporarily remove all accounts from the phone (Google, Samsung, etc.); you add them back after installing</span></li>
+          </ul>
+          <a href="https://devicecontrol.dctech.co.il/installer/" class="btn btn-primary" target="_blank" rel="noopener">💻 Open the setup wizard</a>
+        </div>
+        <div class="inst feat">
+          <span class="ribbon">Hassle-free</span>
+          <span class="inst-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+          <h3>Install with an ambassador</h3>
+          <div class="price">₪40 <small style="font-size:1rem">one-time</small></div>
+          <p class="plan-note">Installation fee only · full license sold separately</p>
+          <h4>What you get:</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>The ambassador prepares the phone and installs the app</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>Sets up apps, WhatsApp filtering and screen time with you</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>No computer and no technical setup</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span>You can buy a full license from them too</span></li>
+          </ul>
+          <a href="#ambassadors" class="btn btn-gold">📍 Find an ambassador near you</a>
+        </div>
+      </div>
+      <p class="inst-foot">Installed it yourself and want a full license? <a href="https://wa.me/972525149443" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
     </section>
   </div>
 
@@ -550,9 +590,10 @@
         <p>Join the families keeping their homes filtered and safe, with protection that simply works in the background.</p>
         <div class="final-cta">
           <a href="#ambassadors" class="btn btn-light">📍 Find an ambassador near you</a>
+          <a href="https://devicecontrol.dctech.co.il/installer/" class="btn btn-ghost" target="_blank" rel="noopener">💻 Install it yourself</a>
         </div>
         <div class="store-badge"><span class="gp"><svg aria-label="Google Play" role="img" viewBox="0 0 162.28 32" xmlns="http://www.w3.org/2000/svg"><g><g><path d="m159.36 13.46-3 7.64h-.09l-3.13-7.64h-2.83L155 24.14l-2.68 5.94h2.75l7.23-16.62zm-21.2-6.34h-2.62v17.62h2.62zm-9.86 0H122v17.62h2.64v-6.67h3.67a5.59 5.59 0 0 0 5.78-5.47 5.6 5.6 0 0 0-5.79-5.48Zm.07 8.49h-3.73v-6h3.74a3 3 0 0 1 0 6Zm16.25-2.53a4.94 4.94 0 0 0-4.69 2.7l2.34 1a2.48 2.48 0 0 1 2.4-1.28 2.52 2.52 0 0 1 2.76 2.27v.18a5.73 5.73 0 0 0-2.73-.69c-2.51 0-5.07 1.38-5.07 4 0 2.36 2.05 3.88 4.37 3.88a3.66 3.66 0 0 0 3.34-1.72h.1v1.36H150V18c0-3.13-2.34-4.87-5.36-4.87Zm-.31 9.66c-.86 0-2.06-.44-2.06-1.5 0-1.36 1.49-1.88 2.79-1.88a4.67 4.67 0 0 1 2.4.59 3.19 3.19 0 0 1-3.13 2.79Zm-94.82 2.38A9.46 9.46 0 0 1 40 15.81a9.46 9.46 0 0 1 9.49-9.31 8.91 8.91 0 0 1 6.41 2.57l-1.81 1.79A6.51 6.51 0 0 0 49.49 9a6.77 6.77 0 0 0 0 13.54 6.25 6.25 0 0 0 4.72-1.87 5.26 5.26 0 0 0 1.39-3.2h-6.11V15h8.6a8.38 8.38 0 0 1 .13 1.59 8.37 8.37 0 0 1-2.21 6 8.57 8.57 0 0 1-6.52 2.53Zm22.03-6a5.94 5.94 0 1 1-11.87 0 5.94 5.94 0 1 1 11.87 0zm-2.6 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.9 0a5.93 5.93 0 1 1-11.86 0 5.93 5.93 0 1 1 11.86 0zm-2.59 0a3.35 3.35 0 1 0-6.67 0 3.35 3.35 0 1 0 6.67 0zm15.57-5.63v10.77c0 4.42-2.63 6.24-5.73 6.24a5.75 5.75 0 0 1-5.34-3.5L89 26a3.33 3.33 0 0 0 3 2.13c2 0 3.22-1.23 3.22-3.52v-.86h-.1A4.12 4.12 0 0 1 92 25.12a6 6 0 0 1 0-12 4.18 4.18 0 0 1 3.16 1.34h.1v-1h2.54Zm-2.33 5.66a3.39 3.39 0 0 0-3.21-3.66 3.48 3.48 0 0 0-3.36 3.66 3.45 3.45 0 0 0 3.36 3.61 3.35 3.35 0 0 0 3.21-3.61Zm6.96-12.01v17.61h-2.64V7.14Zm10.4 13.96 2.06 1.36a6 6 0 0 1-5 2.66 5.81 5.81 0 0 1-5.89-6 5.52 5.52 0 0 1 10.75-2.18l.27.69-8 3.31a3.07 3.07 0 0 0 2.92 1.82 3.44 3.44 0 0 0 2.89-1.66zm-6.31-2.16 5.38-2.22a2.34 2.34 0 0 0-2.24-1.27 3.29 3.29 0 0 0-3.14 3.49z" style="fill:#5f6368"/><path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" style="fill:#ea4335"/><path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" style="fill:#fbbc04"/><path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" style="fill:#4285f4"/><path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" style="fill:#34a853"/></g></g></svg></span><span><b>App store: <bdi dir="ltr" style="white-space:nowrap">Google Play</bdi></b><small>Stays on the device, no replacement store</small></span></div>
-        <p class="contact">For purchase and support, contact your nearest ambassador</p>
+        <p class="contact">For purchase and support, contact your nearest ambassador or <a href="https://wa.me/972525149443" target="_blank" rel="noopener"><b>WhatsApp <bdi dir="ltr">052-514-9443</bdi></b></a></p>
       </div>
     </section>
   </div>
