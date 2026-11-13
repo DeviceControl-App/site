@@ -310,6 +310,25 @@
   .inst .btn{width:100%;margin-top:auto}
   .inst-foot{font-size:.86rem;color:var(--muted);margin-top:12px;text-align:center}
   .inst-foot a{color:var(--primary);font-weight:700}
+  /* ---- mobile fit: no sideways scroll ---- */
+  html,body{margin:0;overflow-x:clip}
+  .brand{min-width:0}
+  @media(max-width:600px){
+    .nav{gap:8px}
+    .brand{gap:8px}
+    .brand .mark{width:38px;height:38px;border-radius:11px}
+    .brand .dc{font-size:1.2rem}
+    .brand .he{font-size:.72rem}
+    .nav > div:last-child{gap:4px!important;flex:none}
+    .nav .btn{padding:9px 13px;font-size:.88rem}
+    .lang{padding:6px 6px}
+    .hero{grid-template-columns:minmax(0,1fr)}
+    .hero > *{min-width:0}
+    .store-badge{gap:10px;padding:10px 14px}
+    .store-badge .gp{padding-inline-end:10px}
+    .store-badge > span:last-child{min-width:0}
+  }
+  @media(max-width:360px){.store-badge bdi{white-space:normal!important}}
 </style>
 </head>
 <body>
